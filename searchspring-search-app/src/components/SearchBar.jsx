@@ -32,7 +32,7 @@ function SearchBar({ query, setQuery, onSearch }) {
         onChange={handleChange}
         placeholder="Search products..."
       />
-      <button onClick={handleClick}>Search</button>
+      <button className="search" onClick={handleClick}>Search</button>
     </div>
   );
 }

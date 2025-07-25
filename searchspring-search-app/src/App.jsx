@@ -3,6 +3,10 @@ import SearchBar from "./components/SearchBar";
 import ProductList from "./components/ProductList";
 import Pagination from "./components/Pagination";
 import { fetchSearchResults } from "./api/search";
+import ThemeToggle from './components/ToggleTheme';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 
 function App() {
   const [query, setQuery] = useState("jeans");
@@ -11,6 +15,17 @@ function App() {
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const [theme, setTheme] = useState("light");
+
+  // Update root HTML data-theme attribute
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === "light" ? "dark" : "light"));
+  };
 
   const getData = async () => {
     setLoading(true);
@@ -38,7 +53,10 @@ function App() {
   };
 
   return (
+    <>
+     <Header theme={theme} toggleTheme={toggleTheme}  />
     <div className="container">
+       <ThemeToggle />
       <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
 
       {results.length > 0 && (
@@ -51,6 +69,9 @@ function App() {
         <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       )}
     </div>
+       <Footer />
+    </>
+    
   );
 }
 
