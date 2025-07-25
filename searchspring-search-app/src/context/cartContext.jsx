@@ -5,6 +5,25 @@ export const CartContext = createContext();
 
 const initialState = [];
 
+const incrementQuantity = id => {
+  setCart(prev =>
+    prev.map(item =>
+      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+    )
+  );
+};
+
+const decrementQuantity = id => {
+  setCart(prev =>
+    prev.map(item =>
+      item.id === id && item.quantity > 1
+        ? { ...item, quantity: item.quantity - 1 }
+        : item
+    )
+  );
+};
+
+
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
