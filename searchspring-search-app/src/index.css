@@ -467,7 +467,7 @@ button:focus-visible {
   padding: 4px 10px;
   font-size: 16px;
   cursor: pointer;
-   background-color: #d0ff00; /* Blue */
+   background-color: #0056b3; /* Blue */
 }
 
 .quantity-controls button:hover {

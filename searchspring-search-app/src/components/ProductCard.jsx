@@ -1,45 +1,52 @@
-import { FaCartPlus } from "react-icons/fa";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../context/cartContext";
+import { FaShoppingCart, FaPlus, FaMinus } from "react-icons/fa";
+import "./ProductCard.css";
 
-function ProductCard({ product , onAddToCart  }) {
+function ProductCard({ product }) {
+  const { cart, dispatch } = useContext(CartContext);
+  const inCart = cart.find((item) => item.id === product.id);
+  const quantity = inCart ? inCart.quantity : 0;
 
+  const handleAdd = () => {
+    if (!inCart) {
+      dispatch({ type: "ADD_TO_CART", payload: product });
+    } else {
+      dispatch({ type: "INCREMENT", payload: product.id });
+    }
+  };
 
-    const [quantity, setQuantity] = useState(1);
+  const handleSubtract = () => {
+    if (inCart && quantity > 1) {
+      dispatch({ type: "DECREMENT", payload: product.id });
+    } else if (inCart && quantity === 1) {
+      dispatch({ type: "REMOVE_FROM_CART", payload: product.id });
+    }
+  };
 
-  const increaseQty = () => setQuantity((q) => q + 1);
-  const decreaseQty = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
   return (
     <div className="product-card">
-      <div className="image-container">
-        <img
-          className="product-image"
-          src={product.thumbnailImageUrl}
-          alt={product.name}
-          loading="lazy"
-        />
-        {product.msrp > product.price && (
-          <div className="badge">Sale</div>
-        )}
-      </div>
-      <div className="product-name" title={product.name}>
-        {product.name}
-      </div>
-      <div className="product-price">
-        <span className="price">${product.price}</span>
-        {product.msrp > product.price && (
-          <span className="msrp">${product.msrp}</span>
-        )}
- <div className="quantity-controls">
-        <button onClick={decreaseQty}>−</button>
-        <span>{quantity}</span>
-        <button onClick={increaseQty}>+</button>
-      </div>
+      <img src={product.imageUrl} alt={product.name} />
+      <h3>{product.name}</h3>
+      <p>${product.price}</p>
+
+      <div className="card-footer">
+        <div className="quantity-controls">
+          <button className="qty-btn" onClick={handleSubtract}>
+            <FaMinus />
+          </button>
+          <span>{quantity}</span>
+          <button className="qty-btn" onClick={handleAdd}>
+            <FaPlus />
+          </button>
+        </div>
+
         <button
-        className="add-to-cart-btn"
-        onClick={() => onAddToCart(product)}
-      >
-        <FaCartPlus /> Add to Cart
-      </button>
+          className="add-to-cart"
+          onClick={() => dispatch({ type: "ADD_TO_CART", payload: product })}
+        >
+          <FaShoppingCart /> Add to Cart
+        </button>
       </div>
     </div>
   );
