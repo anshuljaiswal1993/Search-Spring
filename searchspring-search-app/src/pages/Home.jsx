@@ -5,28 +5,28 @@ import "./Home.css";
 
 const categories = [
   {
-    title: "Spring is Here",
-    image: "/images/spring.png",
+    title: "Summer Collection",
+    image: "/public/sunglasses.png",
     backgroundColor: "#e1c8f7",
   },
   {
     title: "Tops",
-    image: "/images/tops.png",
+    image: "/public/topss.png",
     backgroundColor: "#f4e6a1",
   },
   {
     title: "Shoes",
-    image: "/images/shoes.png",
+    image: "/public/shoe.png",
     backgroundColor: "#b9e4f3",
   },
   {
     title: "Jeans",
-    image: "/images/jeans.png",
+    image: "/public/jean.png",
     backgroundColor: "#f8c3d3",
   },
   {
     title: "Dresses",
-    image: "/images/dresses.png",
+    image: "/public/dresses.png",
     backgroundColor: "#d2f4d6",
   },
 ];
