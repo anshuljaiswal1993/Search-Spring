@@ -123,20 +123,32 @@ button:focus-visible {
 /* Product List */
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* responsive */
   gap: 20px;
   padding: 20px;
 }
 
+
 /* Product Card */
 .product-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--card-bg, #fff);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 16px;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: center;
+  min-height: 360px; /* ⬅️ increase card height */
 }
+.product-card img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
 .product-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
@@ -418,3 +430,28 @@ button:focus-visible {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.add-to-cart-btn {
+  margin-top: 10px;
+  background-color: var(--btn-bg, #007bff);
+  color: var(--btn-color, #fff);
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--btn-hover-bg, #0056b3);
+}
+
+[data-theme="dark"] .add-to-cart-btn {
+  --btn-bg: #444;
+  --btn-hover-bg: #666;
+  --btn-color: #fff;
+}
+

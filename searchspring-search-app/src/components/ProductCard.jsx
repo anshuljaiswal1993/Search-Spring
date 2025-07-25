@@ -1,4 +1,6 @@
-function ProductCard({ product }) {
+import { FaCartPlus } from "react-icons/fa";
+
+function ProductCard({ product , onAddToCart  }) {
   return (
     <div className="product-card">
       <div className="image-container">
@@ -20,6 +22,13 @@ function ProductCard({ product }) {
         {product.msrp > product.price && (
           <span className="msrp">${product.msrp}</span>
         )}
+
+        <button
+        className="add-to-cart-btn"
+        onClick={() => onAddToCart(product)}
+      >
+        <FaCartPlus />
+      </button>
       </div>
     </div>
   );

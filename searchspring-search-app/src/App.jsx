@@ -15,6 +15,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [theme, setTheme] = useState("light");
+  const [cart, setCart] = useState([]);
+
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -56,6 +58,16 @@ function App() {
     getData();
   };
 
+  const handleAddToCart = (product) => {
+  setCart((prevCart) => {
+    // Check if item is already in cart
+    const exists = prevCart.find(item => item.id === product.id);
+    if (exists) return prevCart;
+    return [...prevCart, product];
+  });
+};
+
+
   return (
     <>
       <Header theme={theme} toggleTheme={toggleTheme} />
@@ -73,7 +85,7 @@ function App() {
           )}
         </div>
 
-        <ProductList products={results} loading={loading} error={error} />
+        <ProductList products={results} loading={loading} error={error}  onAddToCart={handleAddToCart}/>
 
         {results.length > 0 && (
           <div className="pagination-bottom">

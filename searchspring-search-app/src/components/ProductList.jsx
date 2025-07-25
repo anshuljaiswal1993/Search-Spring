@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard";
 
-function ProductList({ products, loading, error }) {
+function ProductList({ products, loading, error,onAddToCart  }) {
   if (error) return <p className="center error">{error}</p>;
   if (products.length === 0) {
     return (
@@ -25,7 +25,7 @@ function ProductList({ products, loading, error }) {
                 </div>
             ))
         : products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart}/>
           ))}
     </div>
   );
