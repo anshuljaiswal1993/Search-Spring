@@ -6,27 +6,27 @@ import "./Home.css";
 const categories = [
   {
     title: "Summer Collection",
-    image: "/public/sunglasses.png",
+    image: "/sunglasses.png",
     backgroundColor: "#e1c8f7",
   },
   {
     title: "Tops",
-    image: "/public/topss.png",
+    image: "/topss.png",
     backgroundColor: "#f4e6a1",
   },
   {
     title: "Shoes",
-    image: "/public/shoe.png",
+    image: "/shoe.png",
     backgroundColor: "#b9e4f3",
   },
   {
     title: "Jeans",
-    image: "/public/jean.png",
+    image: "/jean.png",
     backgroundColor: "#f8c3d3",
   },
   {
     title: "Dresses",
-    image: "/public/dresses.png",
+    image: "/dresses.png",
     backgroundColor: "#d2f4d6",
   },
 ];
