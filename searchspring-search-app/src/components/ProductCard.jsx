@@ -1,6 +1,13 @@
 import { FaCartPlus } from "react-icons/fa";
+import { useState } from "react";
 
 function ProductCard({ product , onAddToCart  }) {
+
+
+    const [quantity, setQuantity] = useState(1);
+
+  const increaseQty = () => setQuantity((q) => q + 1);
+  const decreaseQty = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
   return (
     <div className="product-card">
       <div className="image-container">
@@ -22,12 +29,16 @@ function ProductCard({ product , onAddToCart  }) {
         {product.msrp > product.price && (
           <span className="msrp">${product.msrp}</span>
         )}
-
+ <div className="quantity-controls">
+        <button onClick={decreaseQty}>−</button>
+        <span>{quantity}</span>
+        <button onClick={increaseQty}>+</button>
+      </div>
         <button
         className="add-to-cart-btn"
         onClick={() => onAddToCart(product)}
       >
-        <FaCartPlus />
+        <FaCartPlus /> Add to Cart
       </button>
       </div>
     </div>
