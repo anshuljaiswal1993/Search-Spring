@@ -15,7 +15,8 @@ const Header = ({ theme, toggleTheme }) => {
     <>
       <header className="header">
         <div className="left">
-          <img src="/logo.png" alt="Logo" className="logo" />
+            <div className="logo">🔍 SearchSpring</div>
+          {/* <img src="/logo.png" alt="Logo" className="logo" /> */}
         </div>
 
         <div className="right">
