@@ -414,4 +414,7 @@ button:focus-visible {
     justify-content: center;
   }
 }
-
+.search-bar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
