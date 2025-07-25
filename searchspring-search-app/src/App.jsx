@@ -3,28 +3,25 @@ import SearchBar from "./components/SearchBar";
 import ProductList from "./components/ProductList";
 import Pagination from "./components/Pagination";
 import { fetchSearchResults } from "./api/search";
-import ThemeToggle from './components/ToggleTheme';
+import ThemeToggle from "./components/ToggleTheme";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-
 function App() {
-  const [query, setQuery] = useState("jeans");
+  const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
   const [theme, setTheme] = useState("light");
 
-  // Update root HTML data-theme attribute
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === "light" ? "dark" : "light"));
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   const getData = async () => {
@@ -43,7 +40,6 @@ function App() {
 
   const handleSearch = () => {
     if (!query.trim()) {
-      setError("Please enter a search term.");
       setResults([]);
       return;
     }
@@ -52,26 +48,42 @@ function App() {
     getData();
   };
 
+  const handleReset = () => {
+    setQuery("");
+    setResults([]);
+    setError("");
+    setPage(1);
+    getData();
+  };
+
   return (
     <>
-     <Header theme={theme} toggleTheme={toggleTheme}  />
-    <div className="container">
-       <ThemeToggle />
-      <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
+      <Header theme={theme} toggleTheme={toggleTheme} />
 
-      {results.length > 0 && (
-        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
-      )}
+      <div className="container">
+        <ThemeToggle />
 
-      <ProductList products={results} loading={loading} error={error} />
+        {/* Search Left | Pagination Right */}
+        <div className="top-bar">
+          <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} onReset={handleReset} />
+          {results.length > 0 && (
+            <div className="pagination-right">
+              <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+            </div>
+          )}
+        </div>
 
-      {results.length > 0 && (
-        <Pagination page={page} setPage={setPage} totalPages={totalPages} />
-      )}
-    </div>
-       <Footer />
+        <ProductList products={results} loading={loading} error={error} />
+
+        {results.length > 0 && (
+          <div className="pagination-bottom">
+            <Pagination page={page} setPage={setPage} totalPages={totalPages} />
+          </div>
+        )}
+      </div>
+
+      <Footer />
     </>
-    
   );
 }
 

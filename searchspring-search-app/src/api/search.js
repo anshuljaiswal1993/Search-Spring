@@ -6,7 +6,7 @@ export const fetchSearchResults = async (query, page = 1) => {
     const response = await axios.get("https://api.searchspring.net/api/search/search.json", {
       params: {
         siteId: "scmq7n",
-        q: query,
+        q: query ? query :"",
         resultsFormat: "native",
         page: page,
       },

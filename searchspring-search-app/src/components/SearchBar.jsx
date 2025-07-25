@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function SearchBar({ query, setQuery, onSearch }) {
+function SearchBar({ query, setQuery, onSearch , onReset  }) {
   const timeoutRef = useRef(null);
 
   const handleChange = (e) => {
@@ -31,8 +31,14 @@ function SearchBar({ query, setQuery, onSearch }) {
         value={query}
         onChange={handleChange}
         placeholder="Search products..."
+        
       />
-      <button className="search" onClick={handleClick}>Search</button>
+      <button className="search" disabled={!query.trim()} onClick={handleClick}>Search</button>
+      {query && (
+        <button className="reset" onClick={onReset}>
+          Reset
+        </button>
+      )}
     </div>
   );
 }

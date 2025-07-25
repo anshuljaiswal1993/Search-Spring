@@ -2,7 +2,15 @@ import ProductCard from "./ProductCard";
 
 function ProductList({ products, loading, error }) {
   if (error) return <p className="center error">{error}</p>;
-  if (!loading && products.length === 0) return <p className="center">No results found.</p>;
+  if (products.length === 0) {
+    return (
+      <div className="no-results-wrapper">
+        <div className="no-results">
+          😕 No results found. Try a different keyword!
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="product-list">
