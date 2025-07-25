@@ -6,6 +6,7 @@ import { fetchSearchResults } from "./api/search";
 import ThemeToggle from "./components/ToggleTheme";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Home from "./pages/Home";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -26,15 +27,14 @@ function App() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
-  const getData = async () => {
-    setLoading(true);
-    const { results, totalPages, error } = await fetchSearchResults(query, page);
-
-    setResults(results);
-    setTotalPages(totalPages);
-    setError(error || "");
-    setLoading(false);
-  };
+ const getData = async (q = query, p = page) => {
+  setLoading(true);
+  const { results, totalPages, error } = await fetchSearchResults(q, p);
+  setResults(results);
+  setTotalPages(totalPages);
+  setError(error || "");
+  setLoading(false);
+};
 
   useEffect(() => {
     getData();
@@ -67,6 +67,11 @@ function App() {
   });
 };
 
+const handleShopNow = (title) => {
+  setQuery(title);
+  setPage(1);
+  getData(title, 1); // Pass title to fetch function
+};
 
   return (
     <>
@@ -84,7 +89,7 @@ function App() {
             </div>
           )}
         </div>
-
+<Home onShopNow={handleShopNow}/>
         <ProductList products={results} loading={loading} error={error}  onAddToCart={handleAddToCart}/>
 
         {results.length > 0 && (
