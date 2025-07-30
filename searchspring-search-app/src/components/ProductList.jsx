@@ -6,14 +6,14 @@ function ProductList({ products, loading, error,onAddToCart  }) {
     return (
       <div className="no-results-wrapper">
         <div className="no-results">
-          😕 No results found. Try a different keyword!
+          😕 No results found. Please search with appropriate product name !
         </div>
       </div>
     );
   }
 
   return (
-    <div className="product-list">
+    <div className="product-grid">
       {loading
         ? Array(24)
             .fill(0)

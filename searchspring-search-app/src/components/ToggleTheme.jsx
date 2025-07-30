@@ -13,9 +13,7 @@ function ThemeToggle() {
   };
 
   return (
-    <button onClick={toggleTheme} style={{ position: 'fixed', top: 20, right: 20 }}>
-      Toggle {theme === "light" ? "Dark" : "Light"} Mode
-    </button>
+    <></>
   );
 }
 

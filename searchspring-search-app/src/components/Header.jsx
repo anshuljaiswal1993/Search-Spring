@@ -5,7 +5,7 @@ import { CartContext } from "../context/cartContext";
 import CartModal from "./CartModal";
 import "./Header.css";
 
-const Header = ({ theme, toggleTheme }) => {
+const Header = ({ theme, toggleTheme ,handleReset }) => {
   const { cart } = useContext(CartContext);
   const [showCart, setShowCart] = useState(false);
 
@@ -15,8 +15,7 @@ const Header = ({ theme, toggleTheme }) => {
     <>
       <header className="header">
         <div className="left">
-            <div className="logo">🔍 SearchSpring</div>
-          {/* <img src="/logo.png" alt="Logo" className="logo" /> */}
+            <div className="logo header-cursor" onClick={handleReset}>🔍 SearchSpring</div>
         </div>
 
         <div className="right">

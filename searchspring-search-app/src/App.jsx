@@ -87,11 +87,11 @@ function App() {
   const sortedResults = getSortedResults();
 
   return (
-    <>
-      <Header theme={theme} toggleTheme={toggleTheme} />
+    <div className="container">
+      <Header theme={theme} toggleTheme={toggleTheme} handleReset={handleReset}/>
 
       <div className="container">
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
 
         {/* Search Left | Pagination Right */}
         <div className="top-bar">
@@ -109,6 +109,8 @@ function App() {
               <Pagination page={page} setPage={setPage} totalPages={totalPages} />
             </div>
           )}
+
+                  <ThemeToggle />
         </div>
 
         <Home onShopNow={handleShopNow} />
@@ -128,7 +130,7 @@ function App() {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }
 

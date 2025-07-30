@@ -3,20 +3,20 @@ import { useEffect, useRef } from "react";
 function SearchBar({ query, setQuery, onSearch , onReset , sort, setSort  }) {
   const timeoutRef = useRef(null);
 
-  const handleChange = (e) => {
+ const handleChange = (e) => {
   const value = e.target.value;
   setQuery(value);
-
-  if (timeoutRef.current) clearTimeout(timeoutRef.current);
-
-  timeoutRef.current = setTimeout(() => {
-    if (value.trim()) {
-      onSearch();
-    } else {
-      onReset(); 
-    }
-  }, 500);
 };
+
+ const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      if (query.trim()) {
+        onSearch();
+      } else {
+        onReset();
+      }
+    }
+  };
 
 
   const handleClick = () => {
@@ -32,6 +32,7 @@ function SearchBar({ query, setQuery, onSearch , onReset , sort, setSort  }) {
         type="text"
         value={query}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
         placeholder="Search products..."
         
       />
