@@ -70,7 +70,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-/* Responsive Light Theme Fallback */
+/* Responsive Light Theme  */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -83,47 +83,10 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
-/* SearchBar */
-.search-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 32px;
-}
-.search-bar input {
-  flex: 1;
-  max-width: 400px;
-  padding: 12px 16px;
-  border: 1px solid #bbb;
-  border-radius: 8px;
-  font-size: 16px;
-}
-.search-bar button {
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-}
-.search-bar button.search {
-  background-color: #1976d2;
-  color: white;
-}
-.search-bar button.reset {
-  background-color: #e53935;
-  color: white;
-}
-.search-bar button:hover {
-  opacity: 0.9;
-}
-
 /* Product List */
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* responsive */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
   padding: 20px;
 }
@@ -140,7 +103,7 @@ button:focus-visible {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   padding: 16px;
   overflow: hidden;
-  min-height: 360px; /* ⬅️ increase card height */
+  min-height: 360px;
 }
 .product-card img {
   width: 100%;
@@ -467,11 +430,11 @@ button:focus-visible {
   padding: 4px 10px;
   font-size: 16px;
   cursor: pointer;
-   background-color: #0056b3; /* Blue */
+   background-color: #0056b3;
 }
 
 .quantity-controls button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3; 
 }
 
 
@@ -494,5 +457,48 @@ button:focus-visible {
   gap: 6px;
   font-weight: bold;
 }
+.search-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-bar input[type="text"] {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-bar .search,
+.search-bar .reset {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.search-bar .reset {
+  background-color: #dc3545;
+}
+
+.search-bar .search:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.sort-dropdown {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  min-width: 180px;
+}
+
 
 

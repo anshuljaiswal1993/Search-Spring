@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-function SearchBar({ query, setQuery, onSearch , onReset  }) {
+function SearchBar({ query, setQuery, onSearch , onReset , sort, setSort  }) {
   const timeoutRef = useRef(null);
 
   const handleChange = (e) => {
@@ -33,7 +33,18 @@ function SearchBar({ query, setQuery, onSearch , onReset  }) {
         placeholder="Search products..."
         
       />
+
+       <select 
+       className="sort-dropdown"
+       value={sort}
+        onChange={(e) => setSort(e.target.value)}>
+        <option value="">Sort By: Relevance</option>
+        <option value="price_asc">Price: Low to High</option>
+        <option value="price_desc">Price: High to Low</option>
+        <option value="newest">Newest</option>
+      </select>
       <button className="search" disabled={!query.trim()} onClick={handleClick}>Search</button>
+
       {query && (
         <button className="reset" onClick={onReset}>
           Reset
