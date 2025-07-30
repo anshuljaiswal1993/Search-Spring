@@ -49,14 +49,14 @@ function App() {
     getData();
   };
 
-  const handleReset = () => {
-    setQuery("");
-    setResults([]);
-    setError("");
-    setPage(1);
-    setSort(""); // ⬅️ Reset sort to default
-    getData();
-  };
+ const handleReset = () => {
+  const defaultQuery = ""; 
+  setQuery(defaultQuery);
+  setSort("");
+  setPage(1);
+  getData(defaultQuery, 1); 
+};
+
 
   const handleAddToCart = (product) => {
     setCart((prevCart) => {

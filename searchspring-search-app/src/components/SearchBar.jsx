@@ -4,18 +4,20 @@ function SearchBar({ query, setQuery, onSearch , onReset , sort, setSort  }) {
   const timeoutRef = useRef(null);
 
   const handleChange = (e) => {
-    const value = e.target.value;
-    setQuery(value);
+  const value = e.target.value;
+  setQuery(value);
 
-    // Debounce logic
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
-    timeoutRef.current = setTimeout(() => {
-      if (value.trim()) {
-        onSearch(); // Debounced auto-search
-      }
-    }, 500);
-  };
+  timeoutRef.current = setTimeout(() => {
+    if (value.trim()) {
+      onSearch();
+    } else {
+      onReset(); 
+    }
+  }, 500);
+};
+
 
   const handleClick = () => {
     // Trigger search immediately when button is clicked
@@ -43,7 +45,15 @@ function SearchBar({ query, setQuery, onSearch , onReset , sort, setSort  }) {
         <option value="price_desc">Price: High to Low</option>
         <option value="newest">Newest</option>
       </select>
-      <button className="search" disabled={!query.trim()} onClick={handleClick}>Search</button>
+
+
+      <button
+       className="search" 
+       disabled={!query.trim()} 
+       onClick={handleClick}
+       >
+        Search
+       </button>
 
       {query && (
         <button className="reset" onClick={onReset}>
